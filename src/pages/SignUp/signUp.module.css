@@ -1,0 +1,121 @@
+.modal{
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalContent{
+    padding: 10px;
+    border-radius: 12px;
+    background-color: #f5f4f4;
+    font-family: 'Poppins', sans-serif;
+    min-width: 390px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formWrap{
+    display: flex;
+    flex-direction: column;
+    margin-top: 8px;
+}
+
+.input{
+    width: 250px;
+    height: 35px;
+    margin-top: 3px;
+}
+
+.btn{
+    width: 250px;
+    height: 35px;
+    margin-top: 20px;
+    background-color: #7986f8;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 4px;
+}
+.btn:hover{
+    opacity: 0.9;
+}
+
+.linkWrap{
+    display: flex;
+    align-items: center;
+}
+.linkWrap p{
+    color: grey;
+}
+.link{
+    margin-left: 8px;
+    color: #583cf8;
+
+}
+.link:hover{
+    opacity: 0.9;
+}
+
+.input:focus{
+    outline: 3px #fff;
+}
+
+.input.wrong{
+    border: 2px solid red;
+}
+
+/* indicator */
+
+.indicatorLine{
+    height: 2.5px;
+    width: 55px;
+    border-radius: 4px;
+}
+.indicatorWrap{
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.indicatorLine.red{
+    background-color: red;
+}
+
+.indicatorLine.orange{
+    background-color: orange;
+}
+
+.indicatorLine.blue{
+    background-color: #583cf8;
+}
+
+.indicatorLine.green{
+    background-color: green;
+}
+.line{
+    height: 2.5px;
+    width: 55px;
+    border-radius: 4px;
+    background: #583cf8;
+}
+.indicatorLine.back{
+    background-color: transparent;
+}
+
+@media(max-width:400px){
+    .modalContent{
+        min-width: 320px;
+    }
+}
+@media(max-width:320px){
+    .modalContent{
+        min-width: 290px;
+    }
+}

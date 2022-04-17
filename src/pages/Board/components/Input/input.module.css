@@ -1,0 +1,34 @@
+.inputTitle.wrong{
+    border: 1px solid red ;
+}
+
+.btnss{
+    background-color: blueviolet;
+}
+
+.inputTitle{
+    width: 100%;
+    padding: 5px;
+    font-size: 20px;
+    background-color: rgba(248, 246, 246, 0.63);
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    margin: 0 auto;
+}
+
+.inputTitle:focus{
+    outline: 3px #fff;
+}
+
+@media(max-width:750px){
+    .inputTitle{
+        width: 170px;
+    }
+}
+
+@media(max-width:500px){
+    .inputTitle{
+        width: 120px;
+    }
+}

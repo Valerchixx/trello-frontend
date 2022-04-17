@@ -1,0 +1,97 @@
+body{
+  font-family: 'Be Vietnam Pro', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-image: url(/public/bgviol.jpg);
+  min-height: 100vh;
+}
+
+*{
+    box-sizing: border-box;
+}
+.boardsWrap{
+    display: flex;
+    max-width: 1000px;
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 80px auto;
+}
+.boardingWrap{
+    display: flex;
+}
+.newDesk{
+    width: 220px;
+    height: 120px;
+    background-color: rgba(227, 230, 233, 0.699);
+    border-radius: 15px;
+    margin: 0 10px 10px 10px;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+}
+.newDesk:hover{
+    background-color: rgba(227, 230, 233, 0.849);
+
+}
+.link{
+    text-decoration: none;
+}
+.title{
+    text-align: center;
+}
+
+
+@media (max-width:1150px){
+    .boardsWrap{
+        justify-content: center;
+        align-items: center;
+        margin: 80px auto;
+    }
+}
+
+.hidden{
+    overflow: hidden;
+}
+.logout{
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 80px;
+    height: 35px;
+    background-color: rgb(183, 138, 255);
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    border-radius: 4px;
+
+}
+.logout:hover{
+    opacity: 0.9;
+}
+
+@media( max-width: 800px){
+ .headWrap{
+     display: flex;
+     justify-content: center;
+     flex-direction: column;
+ }
+ .logout{
+     left: 10px;
+     top: 25px;
+ }
+}
+
+@media( max-height: 500px){
+    .title{
+        margin-left: 40px;
+    }
+    .logout{
+        left: 10px;
+    }
+   }

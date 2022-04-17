@@ -1,0 +1,116 @@
+.modalCard{
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0,0,0,0.6);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s all;
+    z-index: 100500;
+
+}
+.modalCardContent{
+    padding: 10px;
+    border-radius: 12px;
+    background-color: #fff;
+    transition: .3s all;
+    transform: scale(0);
+
+}
+.wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+.description{
+    padding-left: 15px;
+}
+.btns{
+    padding-right: 30px;
+}
+.btn{
+    color: #fff;
+    width: 100px;
+    height: 28px;
+    background-color: #ebecf0;
+    background: linear-gradient(93.36deg, #9259ec 4%, #2aa6ee 100%);
+    border: none;
+    border-radius: 3px;
+    margin-bottom: 12px;
+    margin-left: 10px;
+
+}
+.btn:hover{
+    opacity: .9;
+}
+.wrapBtns{
+    margin-bottom: 20px;
+}
+.wrapHeader{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 10px;
+    align-items: center;
+}
+.input{
+    background-color: #ebecf0;
+    border: none;
+    width: 220px;
+    height: 30px;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+
+}
+.modalCardContent.active{
+    transform: scale(1);
+    transition: 0.3s all;
+}
+.modalCard.active{
+    opacity: 1;
+    visibility: visible;
+}
+
+.inputTitle{
+    border: 2px solid rgb(23, 143, 212);
+    border-radius: 7px;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.322);
+    width: 150px;
+
+}
+.inputTitle:focus{
+    outline: 2px #fff;
+}
+.inputTitle.wrong{
+    border: 2px solid red;
+}
+
+@media(max-width:450px){
+    .input{
+        width: 170px;
+        margin-right: 10px;
+    }
+    .btns{
+        padding-right: 15px;
+
+    }
+
+}
+
+@media(max-width:320px){
+    .input{
+        width: 130px;
+    }
+    .wrapP{
+        margin-left: 10px;
+    }
+    .btns{
+        padding-right: 15px;
+
+    }
+
+}

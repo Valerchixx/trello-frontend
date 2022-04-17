@@ -1,0 +1,18 @@
+.cardDiv{
+    width: 250px;
+    height: 35px;
+    background-color: rgb(255, 255, 255);
+    margin: 10px auto;
+    margin-bottom: 15px;
+    text-align: left;
+    border-radius: 4px;
+    box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6);
+
+}
+.cardDiv:hover{
+    background-color: #f5f5f8
+}
+.cardDiv p{
+    padding-left: 8px;
+    padding-top: 5px;
+}

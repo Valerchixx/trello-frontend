@@ -1,0 +1,80 @@
+.Board{
+  font-family: 'Be Vietnam Pro', sans-serif;
+  background-image: url(/public/nature2.jpg);
+  margin: 0;
+  padding: 0;
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+.btnAdd{
+    width: 250px;
+    height: 30px;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    background-color: rgba(248, 246, 246, 0.63);
+    color: white;
+    text-align: center;
+    padding-top: 5px;
+}
+.btnAdd:hover{
+    background-color: rgba(229, 226, 226, 0.901);
+
+}
+.listWrap{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    margin-top: 70px;
+    flex-wrap: wrap;
+}
+h2{
+    text-align: center;
+    font-size: 30px;
+    color: #fff;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+.btnHome{
+   border: none;
+   padding: 8px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: rgb(185, 128, 240);
+    text-decoration: none;
+    color: #fff;
+    margin-left: 15px;
+    order: -1;
+}
+.btnHome:hover{
+    background-color: rgb(171, 92, 245);
+}
+.wrap{
+    display: flex;
+    align-items: baseline;
+    margin-top: 30px;
+    height: 50px;
+
+}
+.btns{
+    margin-bottom: 30px;
+}
+.inputTitle:focus{
+    outline: 3px #fff;
+}
+
+.bord{
+    min-height: 70px;
+    max-height: 500px;
+   padding-top: 50px;
+   padding-bottom: 0;
+}
+
+.wrapAdd{
+    padding: 0;
+}
+

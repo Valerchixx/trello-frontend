@@ -1,0 +1,18 @@
+.btnDel{
+    border: none;
+    padding: 8px;
+     border: none;
+     border-radius: 4px;
+     font-size: 16px;
+     background-color: #ebecf0a6;
+     text-decoration: none;
+     color: #fff;
+     margin-left: 20px;
+     display: inline;
+     font-weight: 500;
+
+}
+.btnDel:hover{
+    background-color: #ebecf0c9;
+
+}

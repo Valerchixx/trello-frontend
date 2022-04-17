@@ -1,0 +1,63 @@
+.wrapper{
+    padding: 0;
+    width: 250px;
+    height: 150px;
+    background-color: #8a2be2;
+    background-color: #ebecf0;
+    border-radius: 3px;
+
+}
+.wrapForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.btnClose{
+    width: 30px;
+    color: #000;
+    font-weight: 300;
+    font-size: 35px;
+    display: inline;
+    transition: 0.2s;
+}
+
+.btnClose:hover{
+   color: rgba(0, 0, 0, 0.74);
+   cursor: pointer;
+}
+.H3{
+   margin-left: 90px;
+   font-size: 18px;
+}
+
+.wrapList{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.inputDesk{
+    width: 230px;
+    height: 35px;
+    border-radius: 3px;
+    border: none;
+}
+.inputDesk.wrong{
+    border: 2px solid red;
+}
+.inputDesk:focus{
+    outline: #8a2be2;
+}
+.btnAdd{
+    width: 130px;
+    margin-top: 10px;
+    height: 35px;
+    border: none;
+    border-radius: 4px;
+    background: linear-gradient(93.36deg, #9259ec 4%, #6522e0 100%);
+    color: #fff;
+    font-size: 14px;
+}
+.btnAdd:hover{
+    opacity: 0.9;
+}
+
