@@ -2,7 +2,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter, RouteComponentProps} from 'react-router-dom';
-import {UpdateBoardTitle, getBoard} from '../../store/modules/board/action';
+import {updateBoardTitle, getBoard} from '../../store/modules/board/action';
 import List from './components/List/List';
 import styles from './components/Board/board.module.css';
 import {IBoardFetch} from '../../common/interfaces/IBoardFetch';
@@ -42,10 +42,10 @@ class Board extends React.Component<TParams & funcGet & TypeProps, stateType> {
 		}
 	}
 
-	KeyEnter = (event:React.KeyboardEvent<HTMLInputElement>): void => {
+	keyEnter = (event:React.KeyboardEvent<HTMLInputElement>): void => {
 		const id = this.id.boardId;
 		const title = event.currentTarget.value;
-		UpdateBoardTitle(id, title);
+		updateBoardTitle(id, title);
 		if (event.key === 'Enter') {
 			this.setState({flag: false});
 		}
@@ -57,11 +57,11 @@ class Board extends React.Component<TParams & funcGet & TypeProps, stateType> {
 		return listPos;
 	};
 
-	ShowInput = () => {
+	showInput = () => {
 		this.setState({flag: true});
 	};
 
-	CloseInput = () => {
+	closeInput = () => {
 		this.setState({flag: false});
 	};
 
@@ -76,7 +76,7 @@ class Board extends React.Component<TParams & funcGet & TypeProps, stateType> {
 				<div className={styles.wrap}>
 					<img src="nature2.jpg" alt="" />
 					<div> <DelBoard id={this.id.boardId} /></div>
-					<div onClick={this.ShowInput}> <h2> {this.state.flag ? <Input value={title} id={this.id.boardId} close={this.CloseInput}/> : title} </h2> </div>
+					<div onClick={this.showInput}> <h2> {this.state.flag ? <Input value={title} id={this.id.boardId} close={this.closeInput}/> : title} </h2> </div>
 					<a className={styles.btnHome} href="/">go Home</a>
 				</div>
 				<Spin />

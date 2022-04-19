@@ -8,7 +8,7 @@ import {
 import {RootState} from 'store/reducer';
 import {useDispatch, useSelector} from 'react-redux';
 import {DragDropContext} from 'react-beautiful-dnd';
-import {sort, MoveCard} from 'store/modules/board/action';
+import {sort, moveCard} from 'store/modules/board/action';
 import Login from 'pages/Login/Login';
 import SignUp from 'pages/SignUp/SignUp';
 import Board from './pages/Board/Board';
@@ -29,9 +29,9 @@ export default function App() {
 
 		dispatch(sort(source.droppableId, destination.droppableId, source.index, destination.index, draggableId));
 		if (source.droppableId === destination.droppableId) {
-			dispatch(MoveCard(source.droppableId, String(1646474913842), draggableId, source.index, destination.index, destination.droppableId));
+			dispatch(moveCard(source.droppableId, String(1646474913842), draggableId, source.index, destination.index, destination.droppableId));
 		} else if (source.droppableId !== destination.droppableId) {
-			dispatch(MoveCard(source.droppableId, String(1646474913842), draggableId, source.index, destination.index, destination.droppableId));
+			dispatch(moveCard(source.droppableId, String(1646474913842), draggableId, source.index, destination.index, destination.droppableId));
 		}
 	};
 

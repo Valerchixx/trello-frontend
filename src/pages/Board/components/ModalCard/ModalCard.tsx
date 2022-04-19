@@ -1,13 +1,12 @@
 import React, {ChangeEvent, useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {UpdateDescr, deleteCard, UpdateCard} from '../../../../store/modules/board/action';
+import {updateDescr, deleteCard, updateCard} from '../../../../store/modules/board/action';
 import {list} from '../../../../common/interfaces/IBoardFetch';
 import {validator, regExp} from '../../../../common/validator/validator';
 import MoveModal from '../MoveBoardModal/MoveModal';
 import styles from './modalCard.module.css';
-
-function ModalCard(props:
-    {flag:boolean,
+type modalCard = {
+    flagBody:boolean,
     posCard:number,
     descr:string,
     listId:number,
@@ -17,8 +16,21 @@ function ModalCard(props:
     close:()=> void,
     listTitle:string,
     listArr:list[]
-}) {
-	const [value, setValue] = useState({valueInput: props.descr, dataTitle: '', move: false});
+
+}
+function ModalCard(
+	{flagBody,
+		posCard,
+		descr,
+		listId,
+		boardId,
+		title,
+		idCard,
+		close,
+		listTitle,
+		listArr,
+	}: modalCard) {
+	const [value, setValue] = useState({valueInput: descr, dataTitle: '', move: false});
 	const [flag, setFlag] = useState({flag1: false, flag2: true});
 	const dispatch = useDispatch();
 
@@ -30,48 +42,38 @@ function ModalCard(props:
 		});
 	}
 
-	if (props.flag) {
+	if (flagBody) {
 		document.querySelector('html')?.classList.add('hidden');
 	} else {
 		document.querySelector('html')?.classList.remove('hidden');
 	}
 
-	function AddTitle(event:ChangeEvent<HTMLInputElement>) {
+	function addTitle(event:ChangeEvent<HTMLInputElement>) {
 		const titleData = event.currentTarget.value;
-		if (validator(regExp, titleData)) {
-			setValue({
-				...value,
-				dataTitle: titleData,
-			});
-			setFlag({
-				...flag,
-				flag2: true,
-			});
-		} else {
-			setValue({
-				...value,
-				dataTitle: '',
-			});
-			setFlag({
-				...flag,
-				flag2: false,
-			});
-		}
+		const isValid = validator(regExp, titleData);
+		setValue({
+			...value,
+			dataTitle: isValid ? titleData : '',
+		});
+		setFlag({
+			...flag,
+			flag2: isValid,
+		});
 	}
 
 	function onClose() {
-		props.close?.();
+		close?.();
 	}
 
 	function keyEnter(event:React.KeyboardEvent<HTMLInputElement>) {
 		if (event.key === 'Enter' && value) {
-			dispatch(UpdateDescr(props.idCard, props.boardId, value.valueInput));
+			dispatch(updateDescr(idCard, boardId, value.valueInput));
 		}
 	}
 
 	function delCard() {
-		dispatch(deleteCard(props.idCard, props.boardId));
-		props.close?.();
+		dispatch(deleteCard(idCard, boardId));
+		close?.();
 	}
 
 	function openInput() {
@@ -90,7 +92,7 @@ function ModalCard(props:
 
 	function Updatecard(event:React.KeyboardEvent<HTMLInputElement>) {
 		if (event.key === 'Enter' && value.dataTitle) {
-			dispatch(UpdateCard(props.listId, props.boardId, props.idCard, value.dataTitle));
+			dispatch(updateCard(listId, boardId, idCard, value.dataTitle));
 			setFlag({
 				...flag,
 				flag1: false,
@@ -113,21 +115,21 @@ function ModalCard(props:
 	}
 
 	return (
-		<div className={ props.flag ? `${styles.modalCard}  ${styles.active}` : styles.modalCard } onClick={onClose}>
-			<div className={props.flag ? `${styles.modalCardContent} ${styles.active}` : styles.modalCardContent } onClick={e => e.stopPropagation()}>
+		<div className={ flagBody ? `${styles.modalCard}  ${styles.active}` : styles.modalCard } onClick={onClose}>
+			<div className={flagBody ? `${styles.modalCardContent} ${styles.active}` : styles.modalCardContent } onClick={e => e.stopPropagation()}>
 				<div className={styles.wrapHeader}>
 					<div className={styles.wrapH}>
 						<div>{ flag.flag1
-							? <input type="text" placeholder={props.title}
+							? <input type="text" placeholder={title}
 								onKeyPress={Updatecard}
 								onBlur={closeInput}
-								onChange={AddTitle}
+								onChange={addTitle}
 								className={flag.flag2 ? styles.inputTitle : `${styles.inputTitle} ${styles.wrong}`} />
-							: <div onClick={openInput}><h3>{props.title}</h3></div>}
+							: <div onClick={openInput}><h3>{title}</h3></div>}
 						</div>
 					</div>
 					<div className={styles.wrapP}>
-						<p>{`list: ${props.listTitle}`}</p>
+						<p>{`list: ${listTitle}`}</p>
 					</div>
 				</div>
 				<div className={styles.wrapper}>
@@ -149,11 +151,11 @@ function ModalCard(props:
 							<div className={ `${styles.wrapMoveBtn} `}>
 								<button className={`${styles.movebtn} ${styles.btn}`} onClick={openMoves} type="button">Move card</button>
 								{value.move && <MoveModal
-									close={props.close}
+									close={close}
 									closeMove={() => setValue({...value, move: false})}
-									posCard={props.posCard} listId={props.listId}
-									boardId={props.boardId} cardId={props.idCard}
-									listArr={props.listArr} />}
+									posCard={posCard} listId={listId}
+									boardId={boardId} cardId={idCard}
+									listArr={listArr} />}
 							</div>
 						</div>
 					</div>

@@ -5,10 +5,8 @@ import {list} from '../../../../common/interfaces/IBoardFetch';
 import ModalCard from '../ModalCard/ModalCard';
 
 import styles from './card.module.css';
-
-function Card(props:
-    {
-    currentPostId: string | undefined,
+type card = {
+	currentPostId: string | undefined,
     listArr:list[],
     title:string,
     descr:string,
@@ -19,38 +17,52 @@ function Card(props:
     listTitle:string,
     boardTitle:string,
     index: number
-}) {
+}
+const Card = (
+	{
+		currentPostId,
+		listArr,
+		title,
+		descr,
+		posCard,
+		id,
+		boardId,
+		listId,
+		listTitle,
+		boardTitle,
+		index,
+	}: card) => {
 	const [flag, setFlag] = useState(false);
-	const urlCard = `/b/${props.boardId}/c/${props.id}`;
-	const urlBoard = `/board/${props.boardId}/${props.boardTitle}`;
+	const urlCard = `/b/${boardId}/c/${id}`;
+	const urlBoard = `/board/${boardId}/${boardTitle}`;
 
 	function openModal() {
 		setFlag(true);
 	}
 
 	useEffect(() => {
-		if (props.id === Number(props.currentPostId)) {
+		if (id === Number(currentPostId)) {
 			openModal();
 		}
 	}, []);
 
 	return (
-		<Draggable draggableId={String(props.id)} index={props.index}>
+		<Draggable draggableId={String(id)} index={index}>
 			{provided => (
 				<div className={styles.cards} ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
 					<ModalCard
-						flag={flag}
-						listArr={props.listArr}
-						listTitle={props.listTitle}
-						descr={props.descr}
-						listId={props.listId}
-						boardId={props.boardId}
-						title={props.title}
-						idCard={props.id}
-						posCard={props.posCard}
+						flagBody={flag}
+						listArr={listArr}
+						listTitle={listTitle}
+						descr={descr}
+						listId={listId}
+						boardId={boardId}
+						title={title}
+						idCard={id}
+						posCard={posCard}
 						close={() => setFlag(false)}
 					/>
-					<div onClick={openModal} className={styles.cardDiv}><p>{props.title}</p></div>
+					<div onClick={openModal} className={styles.cardDiv}><p>{title}</p></div>
 					{flag ? <Redirect to={urlCard} /> : <Redirect to={urlBoard} /> }
 				</div>
 
@@ -58,6 +70,6 @@ function Card(props:
 
 		</Draggable>
 	);
-}
+};
 
 export default Card;

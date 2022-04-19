@@ -6,7 +6,7 @@ import {TAppState} from '../../store';
 import {loaderOn, loaderOff} from '../loader/action';
 import api from '../../../api/request';
 import {errorType} from '../error/action';
-import {ADD_BOARDS, UPDATE_BOARDS} from '../../types/types';
+import {Boards} from '../../types/types';
 
 export const getBoards = () => async (dispatch: ThunkDispatch<TAppState, void, AnyAction>) => {
 	try {
@@ -15,7 +15,7 @@ export const getBoards = () => async (dispatch: ThunkDispatch<TAppState, void, A
             boards: IBoard[]
         } = await api.get('/board');
 		setTimeout(() => {
-			dispatch({type: UPDATE_BOARDS, payload: data.boards});
+			dispatch({type: Boards.UPDATE_BOARDS, payload: data.boards});
 			dispatch(loaderOff());
 		}, 400);
 	} catch (e) {
@@ -23,10 +23,10 @@ export const getBoards = () => async (dispatch: ThunkDispatch<TAppState, void, A
 	}
 };
 
-export const CreateBoards = (inputText:string) => async (dispatch: ThunkDispatch<TAppState, void, AnyAction>): Promise<void> => {
+export const createBoards = (inputText:string) => async (dispatch: ThunkDispatch<TAppState, void, AnyAction>): Promise<void> => {
 	try {
 		await api.post('/board', {title: inputText});
-		dispatch({type: ADD_BOARDS});
+		dispatch({type: Boards.ADD_BOARDS});
 		await dispatch(getBoards());
 	} catch (e) {
 		dispatch(errorType('Error adding board'));

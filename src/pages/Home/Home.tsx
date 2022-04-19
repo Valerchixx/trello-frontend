@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import Boarding from './components/Board/Boarding';
 import {getBoards} from '../../store/modules/boards/action';
 import {IBoard} from '../../common/interfaces/IBoard';
-import {Logout} from '../../store/modules/user/action';
+import {logout} from '../../store/modules/user/action';
 import Modal from './components/Modal/Modal';
 import styles from './home.module.css';
 import Spin from '../spin/Spin';
@@ -12,7 +12,7 @@ import Spin from '../spin/Spin';
 type propsType = {
     boards: IBoard[],
     getBoards: () => Promise<void>,
-    Logout: () => Promise<void>
+    logout: () => Promise<void>
 
 }
 
@@ -35,7 +35,7 @@ class Home extends React.Component<propsType, stateType> {
 	};
 
 	logOut = () => {
-		this.props.Logout();
+		this.props.logout();
 	};
 
 	render() {
@@ -66,4 +66,4 @@ const mapStateToProps = (state:{
 	...state.boards,
 });
 
-export default connect(mapStateToProps, {getBoards, Logout})(Home);
+export default connect(mapStateToProps, {getBoards, logout})(Home);

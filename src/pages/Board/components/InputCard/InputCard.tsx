@@ -1,15 +1,23 @@
 import React, {ChangeEvent, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {validator, regExp} from 'common/validator/validator';
-import {UpdateList} from '../../../../store/modules/board/action';
+import {updateList} from '../../../../store/modules/board/action';
 import styles from './inputCard.module.css';
 
-function InputCard(props:{listId: number, boardId:string, title:string, poslist: number, close: () => void}) {
+type cardInput = {
+	listId: number,
+	boardId:string,
+	titleInput:string,
+	poslist: number,
+	close: () => void
+}
+
+const InputCard = ({listId, boardId, titleInput, poslist, close}: cardInput) => {
 	const dispatch = useDispatch();
 	const [title, setTitle] = useState({title: ''});
 	const [flag, setFlag] = useState(true);
 
-	function Validate(event:ChangeEvent<HTMLInputElement>) {
+	function validate(event:ChangeEvent<HTMLInputElement>) {
 		const dataInput = event.currentTarget.value;
 		const titles = validator(regExp, dataInput) ? dataInput : '';
 		const flag = Boolean(validator(regExp, dataInput));
@@ -20,22 +28,22 @@ function InputCard(props:{listId: number, boardId:string, title:string, poslist:
 		setFlag(flag);
 	}
 
-	function updateList(event:React.KeyboardEvent<HTMLInputElement>) {
+	function updateDescrList(event:React.KeyboardEvent<HTMLInputElement>) {
 		if (event.key === 'Enter' && title && flag) {
-			dispatch(UpdateList(props.listId, props.boardId, props.poslist, title.title));
-			props.close?.();
+			dispatch(updateList(listId, boardId, poslist, title.title));
+			close?.();
 		}
 	}
 
 	return (
 		<input
 			className={flag ? styles.input : `${styles.input} ${styles.wrong}`}
-			onChange={Validate}
-			onKeyPress={updateList}
-			type="text" placeholder={props.title}
-			onBlur={props.close}
+			onChange={validate}
+			onKeyPress={updateDescrList}
+			type="text" placeholder={titleInput}
+			onBlur={close}
 		/>
 	);
-}
+};
 
 export default InputCard;

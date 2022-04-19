@@ -8,8 +8,7 @@ import {deleteList} from '../../../../store/modules/board/action';
 import Card from '../Card/Card';
 import AddCard from '../AddCard/AddCard';
 import InputCard from '../InputCard/InputCard';
-
-function List(props: {
+type listInfo = {
   currentPostId: string | undefined,
   listArr:list[],
   title: string,
@@ -19,12 +18,13 @@ function List(props: {
   poscard:number;
   poslist:number,
   boardTitle:string,
-}) {
+}
+const List = ({currentPostId, listArr, title, cards, id, boardid, poscard, poslist, boardTitle}: listInfo) => {
 	const [open, setOpen] = useState({open: false, openInput: false});
 
 	const dispatch = useDispatch();
 	function delList() {
-		dispatch(deleteList(Number(props.id), props.boardid));
+		dispatch(deleteList(Number(id), boardid));
 	}
 
 	function openCard() {
@@ -42,7 +42,7 @@ function List(props: {
 	}
 
 	return (
-		<Droppable droppableId={String(props.id)}>
+		<Droppable droppableId={String(id)}>
 			{provided => (
 				<div {...provided.droppableProps} ref={provided.innerRef} className={styles.list}>
 					<div className={styles.wrapper}>
@@ -50,38 +50,38 @@ function List(props: {
 							<h3>
 								{open.openInput
 									? <InputCard
-										listId={props.id}
-										title={props.title}
-										poslist={props.poslist}
-										boardId={props.boardid}
+										listId={id}
+										titleInput={title}
+										poslist={poslist}
+										boardId={boardid}
 										close={() => setOpen({...open, openInput: false})}
 									/>
-									: props.title}
+									: title}
 							</h3>
 						</div>
 						<div className={styles.close} onClick={delList}>&#215;</div>
 					</div>
-					{Object.keys(props?.cards).length !== 0 && Object.values(props.cards).sort((a, b) => a.position - 1 - b.position).map((item, index) => (
+					{Object.keys(cards).length !== 0 && Object.values(cards).sort((a, b) => a.position - 1 - b.position).map((item, index) => (
 						<Card
-							currentPostId={props.currentPostId}
+							currentPostId={currentPostId}
 							key={item.id}
 							id={item.id}
-							boardId={props.boardid}
-							boardTitle={props.boardTitle}
-							title={item.title}
+							boardId={boardid}
+							boardTitle={boardTitle}
+							title={title}
 							descr={item.description}
-							listTitle={props.title}
-							listId={props.id}
-							listArr={props.listArr}
-							posCard={props.poscard}
+							listTitle={title}
+							listId={id}
+							listArr={listArr}
+							posCard={poscard}
 							index={index}
 						/>
 					))}
 					{provided.placeholder}
 					<div className={styles.addCard}> {open.open
 						? <AddCard
-							idList={props.id} posCard={props.poscard}
-							boardId={props.boardid}
+							idList={id} posCard={poscard}
+							boardId={boardid}
 							close={() => setOpen({...open, open: false})}/>
 						: <button type="button" className={styles.btn} onClick={openCard}>+ Add card</button>}
 					</div>
@@ -91,6 +91,6 @@ function List(props: {
 
 		</Droppable>
 	);
-}
+};
 
 export default List;

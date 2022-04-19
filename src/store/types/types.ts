@@ -1,21 +1,44 @@
-export const UPDATE_BOARDS = 'UPDATE_BOARDS';
-export const ADD_BOARDS = 'ADD_BOARDS';
-export const ERROR_ACTION_TYPE = 'ERROR_ACTION_TYPE';
-export const ERROR_OFF = 'ERROR_OFF';
-export const GET_BOARD = 'GET_BOARD';
-export const UPDATE_BOARD = 'UPDATE_BOARD';
-export const LOADER_DISPLAY_ON = 'LOADER_DISPLAY_ON';
-export const LOADER_DISPLAY_OFF = 'LOADER_DISPLAY_OFF';
-export const ADD_LIST = 'ADD_LIST';
-export const DELETE_BOARD = 'DELETE_BOARD';
-export const DELETE_LIST = 'DELETE_LIST';
-export const ADD_CARD = 'ADD_CARD';
-export const UPDATE_LIST = 'UPDATE_LIST';
-export const UPDATE_DESCRIPTION = ' UPDATE_DESCRIPTION';
-export const DELETE_CARD = 'DELETE_CARD';
-export const UPDATE_CARD = 'UPDATE_CARD';
-export const MOVE_CARD = 'MOVE_CARD';
-export const SIGN_UP = 'SIGN_UP';
-export const LOGIN = 'LOGIN';
-export const LOGOUT = 'LOGOUT';
-export const DRAG_HAPPENED = 'DRAG_HAPPENED';
+/* eslint-disable no-unused-vars */
+
+export const enum Board {
+    GET_BOARD = 'GET_BOARD',
+    UPDATE_BOARD = 'UPDATE_BOARD',
+    DELETE_BOARD = 'DELETE_BOARD',
+    BOARD_TITLE_CHANGE = 'BOARD_TITLE_CHANGE'
+}
+export const enum Boards {
+    UPDATE_BOARDS = 'UPDATE_BOARDS',
+    ADD_BOARDS = 'ADD_BOARDS',
+
+}
+export const enum Loader {
+    LOADER_DISPLAY_ON = 'LOADER_DISPLAY_ON',
+    LOADER_DISPLAY_OFF = 'LOADER_DISPLAY_OFF'
+
+}
+export const enum Error {
+    ERROR_ACTION_TYPE = 'ERROR_ACTION_TYPE',
+    ERROR_OFF = 'ERROR_OFF'
+}
+
+export const enum List {
+    ADD_LIST = 'ADD_LIST',
+    DELETE_LIST = 'DELETE_LIST',
+    UPDATE_LIST = 'UPDATE_LIST'
+
+}
+export const enum Card {
+    ADD_CARD = 'ADD_CARD',
+    UPDATE_DESCRIPTION = ' UPDATE_DESCRIPTION',
+    DELETE_CARD = 'DELETE_CARD',
+    UPDATE_CARD = 'UPDATE_CARD',
+    MOVE_CARD = 'MOVE_CARD'
+}
+export const enum Users {
+    SIGN_UP = 'SIGN_UP',
+    LOGIN = 'LOGIN',
+    LOGOUT = 'LOGOUT'
+}
+export const enum DragDrop {
+    DRAG_HAPPENED = 'DRAG_HAPPENED'
+}

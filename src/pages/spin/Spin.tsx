@@ -4,7 +4,7 @@ import Loader from 'react-loader-spinner';
 import {RootState} from 'store/reducer';
 import styles from './spin.module.css';
 
-function Spin() {
+const Spin = () => {
 	const spinner = useSelector((state:RootState) => state.loaderReducer.loading);
 	return (
 		<div className={spinner ? styles.loaderStyle : `${styles.loaderStyle} ${styles.close}`}>
@@ -13,6 +13,6 @@ function Spin() {
 			</div>
 		</div>
 	);
-}
+};
 
 export default Spin;

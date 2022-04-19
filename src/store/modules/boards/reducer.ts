@@ -1,4 +1,5 @@
 import {IBoard} from '../../../common/interfaces/IBoard';
+import {Boards} from '../../types/types';
 
 const initialState = {
 	boards: [] as IBoard[],
@@ -6,12 +7,12 @@ const initialState = {
 
 export default function reducer(state = initialState, action: {type: string, payload?: []}) {
 	switch (action.type) {
-		case 'UPDATE_BOARDS':
+		case Boards.UPDATE_BOARDS:
 			return {
 				...state,
 				boards: action.payload,
 			};
-		case 'ADD_BOARDS':
+		case Boards.ADD_BOARDS:
 			return {
 				...state,
 			};

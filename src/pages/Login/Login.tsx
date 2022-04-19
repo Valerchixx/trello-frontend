@@ -5,12 +5,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import {useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {validator} from 'common/validator/validator';
-import {Auth} from '../../store/modules/user/action';
+import {auth} from '../../store/modules/user/action';
 import Spin from '../spin/Spin';
 import styles from './login.module.css';
 
-function Login() {
-	const notify = () => toast.error('Неверный логин или пароль', {
+const Login = () => {
+	const message = 'Неверный логин или пароль';
+	const notify = () => toast.error(message, {
 		autoClose: 3000,
 		closeOnClick: true,
 		pauseOnHover: true,
@@ -46,25 +47,15 @@ function Login() {
 	function validatePass(event:ChangeEvent<HTMLInputElement>) {
 		const data = event.target.value;
 		const regExp = /(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,}/;
-		if (validator(regExp, data)) {
-			setTitle({
-				...title,
-				titlePass: data,
-			});
-			setFlag({
-				...flag,
-				flagPass: true,
-			});
-		} else {
-			setTitle({
-				...title,
-				titlePass: '',
-			});
-			setFlag({
-				...flag,
-				flagPass: false,
-			});
-		}
+		const isValid = validator(regExp, data);
+		setTitle({
+			...title,
+			titlePass: isValid ? data : '',
+		});
+		setFlag({
+			...flag,
+			flagPass: isValid,
+		});
 	}
 
 	function errors() {
@@ -77,7 +68,7 @@ function Login() {
 
 	async function login() {
 		if (title.titlePass && title.titleEmail) {
-			dispatch(Auth(title.titleEmail, title.titlePass, notify, errors));
+			dispatch(auth(title.titleEmail, title.titlePass, notify, errors));
 		} else {
 			setFlag({
 				...flag,
@@ -115,6 +106,6 @@ function Login() {
 			</div>
 		</div>
 	);
-}
+};
 
 export default Login;

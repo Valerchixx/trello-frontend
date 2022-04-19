@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from './boarding.module.css';
-
-function Boarding(props:{title:string}) {
-	return (
-		<div className={styles.boards}>
-			<h3>{props.title}</h3>
-		</div>
-	);
+type desk = {
+	title:string
 }
+const Boarding = ({title}: desk) => (
+	<div className={styles.boards}>
+		<h3>{title}</h3>
+	</div>
+);
 
 export default Boarding;

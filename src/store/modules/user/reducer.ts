@@ -1,4 +1,4 @@
-import {SIGN_UP, LOGIN, LOGOUT} from '../../types/types';
+import {Users} from '../../types/types';
 
 const initialState = {
 	isAuthorized: false,
@@ -6,16 +6,16 @@ const initialState = {
 
 export default function reducer(state = initialState, action: {type: string}) {
 	switch (action.type) {
-		case SIGN_UP:
+		case Users.SIGN_UP:
 			return {
 				...state,
 			};
-		case LOGIN:
+		case Users.LOGIN:
 			return {
 				...state,
 				isAuthorized: true,
 			};
-		case LOGOUT:
+		case Users.LOGOUT:
 			return {
 				...state,
 				isAuthorized: false,

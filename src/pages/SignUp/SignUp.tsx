@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable no-useless-escape */
 import React, {ChangeEvent, useState} from 'react';
 import {ToastContainer, toast} from 'react-toastify';
@@ -5,11 +6,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import {Link} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import {validator} from 'common/validator/validator';
-import {Registration} from '../../store/modules/user/action';
+import {registration} from '../../store/modules/user/action';
 import Spin from '../spin/Spin';
 import styles from './signUp.module.css';
 
-function SignUp() {
+const SignUp = () => {
 	const notify = () => toast.error('Пользователь уже существует', {
 		autoClose: 3000,
 		closeOnClick: true,
@@ -23,25 +24,15 @@ function SignUp() {
 	function validateEmail(event:ChangeEvent<HTMLInputElement>) {
 		const data = event.target.value;
 		const regExp = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-		if (validator(regExp, data)) {
-			setTitle({
-				...title,
-				titleEmail: data,
-			});
-			setFlag({
-				...flag,
-				flagEmail: true,
-			});
-		} else {
-			setTitle({
-				...title,
-				titleEmail: '',
-			});
-			setFlag({
-				...flag,
-				flagEmail: false,
-			});
-		}
+		const isValid = validator(regExp, data);
+		setTitle({
+			...title,
+			titleEmail: isValid ? data : '',
+		});
+		setFlag({
+			...flag,
+			flagEmail: isValid,
+		});
 	}
 
 	function indicatorPassword(event:ChangeEvent<HTMLInputElement>) {
@@ -77,46 +68,49 @@ function SignUp() {
 			protect += 1;
 		}
 
-		if (protect === 2) {
-			setColor({
-				...color,
-				red: false,
-				orange: true,
-				blue: false,
-				green: false,
-			});
-		} else if (protect === 0 || protect === 1) {
-			setColor({
-				...color,
-				red: true,
-				orange: false,
-				blue: false,
-				green: false,
-			});
-		} else if (protect === 3) {
-			setColor({
-				...color,
-				blue: true,
-				red: false,
-				orange: false,
-				green: false,
-			});
-		} else if (protect === 4) {
-			setColor({
-				...color,
-				green: true,
-				blue: false,
-				orange: false,
-				red: false,
-			});
+		{
+			const data = {
+				0: {
+			 ...color,
+			 red: true,
+			 orange: false,
+			 blue: false,
+			 green: false,
+		 },
+				1: {
+			 ...color,
+			 red: true,
+			 orange: false,
+			 blue: false,
+			 green: false,
+		 },
+				2: {
+			 ...color,
+			 red: false,
+			 orange: true,
+			 blue: false,
+			 green: false,
+		 },
+				3: {
+					...color,
+		     blue: true,
+			 red: false,
+			 orange: false,
+			 green: false,
+		 },
+				4: {
+			 ...color,
+			 green: true,
+			 blue: false,
+			 orange: false,
+			 red: false,
+		 },
+			};
+			const level = protect as number;
+			setColor(data[level as keyof typeof data]);
 			setFlag({
 				...flag,
-				flagPass: true,
-			});
-		} else {
-			setFlag({
-				...flag,
-				flagPass: false,
+		    flagPass: data?.[level as keyof typeof data].green,
 			});
 		}
 	}
@@ -144,9 +138,9 @@ function SignUp() {
 		});
 	}
 
-	function registration() {
+	function onRegistr() {
 		if (flag.flagRepeat && title.titleEmail && title.titlePass) {
-			dispatch(Registration(title.titleEmail, title.titlePass, notify, errBorder));
+			dispatch(registration(title.titleEmail, title.titlePass, notify, errBorder));
 		} else {
 			setFlag({
 				...flag,
@@ -196,7 +190,7 @@ function SignUp() {
 						<label htmlFor="passwordRepeat">Повторите пароль</label>
 						<input className={flag.flagRepeat ? styles.input : `${styles.input} ${styles.wrong}`} onChange={comparePass} type="password" name="passwordRepeat" />
 					</div>
-					<button className={styles.btn} onClick={registration} type="button">Регистрация</button>
+					<button className={styles.btn} onClick={onRegistr} type="button">Регистрация</button>
 				</form>
 				<div className={styles.linkWrap}>
 					<p>Уже есть аккаунт?</p>
@@ -205,6 +199,6 @@ function SignUp() {
 			</div>
 		</div>
 	);
-}
+};
 
 export default SignUp;
