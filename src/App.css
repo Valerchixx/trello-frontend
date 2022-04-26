@@ -5,6 +5,9 @@ body{
     overflow-x: hidden;
 
 }
+.App{
+  overflow-y: hidden;
+}
 
 .showError{
   height: 100vh;
@@ -40,6 +43,10 @@ margin-top: 8px;
  font-size: 55px;
 
 }
+.containerBody{
+  overflow: hidden;
+}
+
 
 
 

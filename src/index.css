@@ -10,14 +10,18 @@ body {
   padding: 0;
 }
 
-body.hidden{
+
+html.hidden{
   overflow: hidden;
 }
-html.hidden{
+#root{
   overflow: hidden;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+body.hidden{
+  overflow: hidden;
 }

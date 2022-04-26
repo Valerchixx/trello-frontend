@@ -1,3 +1,4 @@
+/* eslint-disable no-return-assign */
 import React, {ChangeEvent, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {updateDescr, deleteCard, updateCard} from '../../../../store/modules/board/action';
@@ -40,12 +41,6 @@ function ModalCard(
 			...value,
 			valueInput: data,
 		});
-	}
-
-	if (flagBody) {
-		document.querySelector('html')?.classList.add('hidden');
-	} else {
-		document.querySelector('html')?.classList.remove('hidden');
 	}
 
 	function addTitle(event:ChangeEvent<HTMLInputElement>) {

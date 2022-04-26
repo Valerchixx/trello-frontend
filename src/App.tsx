@@ -1,3 +1,4 @@
+
 import React from 'react';
 import {
 	HashRouter as Router,
@@ -17,6 +18,7 @@ import './App.css';
 
 export default function App() {
 	const dispatch = useDispatch();
+	// Const [bodyLock] = useState(document.body.style.overflow = 'hidden');
 	const error = useSelector((state:RootState) => state.errorReducer.error);
 	const token = localStorage.getItem('token');
 
@@ -36,21 +38,24 @@ export default function App() {
 	};
 
 	return (
+
 		<DragDropContext onDragEnd={onDragEnd}>
 			<div className="App">
-				<Router>
-					<div>
-						<Switch>
-							{error && <> <div className="showError"><div className="errorContent"><h2 className="errorH2">Oops!</h2><p className="errorP">{error}</p></div></div> </>}
-							<Route exact path="/">{!token ? <Redirect to="/login" /> : <Home boards={[]} /> } </Route>
-							{error && <> <div className="showError"><div className="errorContent"><p className="errorP">{error}</p></div></div> </>}
-							<Route exact path="/board/:boardId/:name" component={Board} />
-							<Route exact path="/b/:boardId/c/:id" component={Board} />
-							<Route exact path="/login" component={Login} />
-							<Route exact path="/signUp" component={SignUp} />
-						</Switch>
-					</div>
-				</Router>
+				<div className="containerBody">
+					<Router>
+						<div>
+							<Switch>
+								{error && <> <div className="showError"><div className="errorContent"><h2 className="errorH2">Oops!</h2><p className="errorP">{error}</p></div></div> </>}
+								<Route exact path="/">{!token ? <Redirect to="/login" /> : <Home boards={[]} /> } </Route>
+								{error && <> <div className="showError"><div className="errorContent"><p className="errorP">{error}</p></div></div> </>}
+								<Route exact path="/board/:boardId/:name" component={Board} />
+								<Route exact path="/b/:boardId/c/:id" component={Board} />
+								<Route exact path="/login" component={Login} />
+								<Route exact path="/signUp" component={SignUp} />
+							</Switch>
+						</div>
+					</Router>
+				</div>
 			</div>
 		</DragDropContext>
 	);

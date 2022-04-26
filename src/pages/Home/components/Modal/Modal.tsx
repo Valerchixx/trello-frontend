@@ -1,8 +1,11 @@
-import React, {ChangeEvent, useState} from 'react';
+/* eslint-disable no-unused-vars */
+
+import React, {ChangeEvent, useContext, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import styles from './modal.module.css';
 import {createBoards} from '../../../../store/modules/boards/action';
 import {validator, regExp} from '../../../../common/validator/validator';
+
 type modal = {
 	handleModal?: () => void,
 	open:boolean
@@ -11,13 +14,6 @@ const Modal = ({handleModal, open}: modal) => {
 	const [title, setTitle] = useState({title: ''});
 	const [flag, setFlag] = useState(true);
 	const dispatch = useDispatch();
-
-	if (open) {
-		document.body.style.overflow = 'hidden';
-	} else {
-		document.body.style.overflow = 'visible';
-	}
-
 	function validateInput(event: ChangeEvent<HTMLInputElement>): void {
 		const dataInput = event.target.value;
 		const titles = validator(regExp, dataInput) ? dataInput : '';
@@ -38,6 +34,12 @@ const Modal = ({handleModal, open}: modal) => {
 				title: '',
 			});
 		}
+	}
+
+	if (open) {
+		document.querySelector('body')?.classList.add('hidden');
+	} else {
+		document.querySelector('body')?.classList.remove('hidden');
 	}
 
 	return (
