@@ -1,6 +1,4 @@
-/* eslint-disable no-unused-vars */
-
-import React, {ChangeEvent, useContext, useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import styles from './modal.module.css';
 import {createBoards} from '../../../../store/modules/boards/action';
@@ -37,19 +35,22 @@ const Modal = ({handleModal, open}: modal) => {
 	}
 
 	if (open) {
-		document.querySelector('body')?.classList.add('hidden');
+		document.body.style.overflow = 'hidden';
 	} else {
-		document.querySelector('body')?.classList.remove('hidden');
+		document.body.style.overflow = 'visible';
 	}
 
 	return (
 		<div className={open ? `${styles.modal} ${styles.active}` : styles.modal} onClick={handleModal}>
-			<div className={open ? `${styles.modalContent} ${styles.active}` : styles.modalContent} onClick={e => e.stopPropagation()}>
-				<h1>Add new desk</h1>
-				<input type="text" onChange={validateInput} placeholder="Enter desk title" className={flag ? styles.input : `${styles.input} ${styles.wrong}`} />
-				<button type="button" onClick={addBoard} className={styles.btn}>Create board</button>
+			<div className={styles.centred}>
+				<div className={open ? `${styles.modalContent} ${styles.active}` : styles.modalContent} onClick={e => e.stopPropagation()}>
+					<h1>Add new desk</h1>
+					<input type="text" onChange={validateInput} placeholder="Enter desk title" className={flag ? styles.input : `${styles.input} ${styles.wrong}`} />
+					<button type="button" onClick={addBoard} className={styles.btn}>Create board</button>
+				</div>
 			</div>
 		</div>
+
 	);
 };
 

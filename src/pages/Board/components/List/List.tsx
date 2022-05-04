@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {Droppable} from 'react-beautiful-dnd';
 import {list} from '../../../../common/interfaces/IBoardFetch';
 import ICard from '../../../../common/interfaces/ICard';
 import styles from './list.module.css';
@@ -42,54 +41,50 @@ const List = ({currentPostId, listArr, title, cards, id, boardid, poscard, posli
 	}
 
 	return (
-		<Droppable droppableId={String(id)}>
-			{provided => (
-				<div {...provided.droppableProps} ref={provided.innerRef} className={styles.list}>
-					<div className={styles.wrapper}>
-						<div onClick={opensInput}>
-							<h3>
-								{open.openInput
-									? <InputCard
-										listId={id}
-										titleInput={title}
-										poslist={poslist}
-										boardId={boardid}
-										close={() => setOpen({...open, openInput: false})}
-									/>
-									: title}
-							</h3>
-						</div>
-						<div className={styles.close} onClick={delList}>&#215;</div>
-					</div>
-					{Object.keys(cards).length !== 0 && Object.values(cards).sort((a, b) => a.position - 1 - b.position).map((item, index) => (
-						<Card
-							currentPostId={currentPostId}
-							key={item.id}
-							id={item.id}
-							boardId={boardid}
-							boardTitle={boardTitle}
-							title={title}
-							descr={item.description}
-							listTitle={title}
-							listId={id}
-							listArr={listArr}
-							posCard={poscard}
-							index={index}
-						/>
-					))}
-					{provided.placeholder}
-					<div className={styles.addCard}> {open.open
-						? <AddCard
-							idList={id} posCard={poscard}
-							boardId={boardid}
-							close={() => setOpen({...open, open: false})}/>
-						: <button type="button" className={styles.btn} onClick={openCard}>+ Add card</button>}
-					</div>
+
+		<div className={styles.list}>
+			<div className={styles.wrapper}>
+				<div onClick={opensInput}>
+					<h3>
+						{open.openInput
+							? <InputCard
+								listId={id}
+								titleInput={title}
+								poslist={poslist}
+								boardId={boardid}
+								close={() => setOpen({...open, openInput: false})}
+							/>
+							: title}
+					</h3>
 				</div>
+				<div className={styles.close} onClick={delList}>&#215;</div>
+			</div>
+			{Object.keys(cards).length !== 0 && Object.values(cards).sort((a, b) => a.position - 1 - b.position).map((item, index) => (
+				<Card
+					currentPostId={currentPostId}
+					key={item.id}
+					id={item.id}
+					boardId={boardid}
+					boardTitle={boardTitle}
+					title={title}
+					descr={item.description}
+					listTitle={title}
+					listId={id}
+					listArr={listArr}
+					posCard={poscard}
+					index={index}
+				/>
+			))}
 
-			)}
+			<div className={styles.addCard}> {open.open
+				? <AddCard
+					idList={id} posCard={poscard}
+					boardId={boardid}
+					close={() => setOpen({...open, open: false})}/>
+				: <button type="button" className={styles.btn} onClick={openCard}>+ Add card</button>}
+			</div>
+		</div>
 
-		</Droppable>
 	);
 };
 

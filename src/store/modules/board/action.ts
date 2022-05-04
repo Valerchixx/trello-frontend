@@ -11,7 +11,6 @@ import {
 	Boards,
 	List,
 	Card,
-	DragDrop,
 } from '../../types/types';
 
 export const getBoard = (id:string) => async (dispatch:ThunkDispatch<TAppState, void, AnyAction>) => {
@@ -133,10 +132,4 @@ export const moveCard = (listId:number, boardId:string, cardId:number, pos:numbe
 	} catch (e) {
 		dispatch(errorType('Error move card'));
 	}
-};
-
-// Drag & drop
-
-export const sort = (droppableIdStart:any, droppableIdEnd:any, droppableIndexStart:any, droppableIndexEnd:any, draggableId:any) => async (dispatch:Dispatch<{ type: string; payload: any; } | { type: string; payload?: [] | undefined; } | { type: string; } | { type: string; payload?: { loading: boolean; } | undefined; } | { type: string; payload: never; }>) => {
-	dispatch({type: DragDrop.DRAG_HAPPENED, payload: {droppableIdStart, droppableIdEnd, droppableIndexStart, droppableIndexEnd, draggableId}});
 };

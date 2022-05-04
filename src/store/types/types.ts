@@ -39,6 +39,4 @@ export const enum Users {
     LOGIN = 'LOGIN',
     LOGOUT = 'LOGOUT'
 }
-export const enum DragDrop {
-    DRAG_HAPPENED = 'DRAG_HAPPENED'
-}
+

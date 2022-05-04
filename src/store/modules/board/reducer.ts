@@ -1,6 +1,5 @@
 import {IBoardFetch} from '../../../common/interfaces/IBoardFetch';
-import {DragDrop, Card, List, Board, Boards} from '../../types/types';
-import {moveCard} from './action';
+import {Card, List, Board, Boards} from '../../types/types';
 
 const initialState = {
 	board: {} as IBoardFetch,
@@ -36,15 +35,6 @@ export default function reducer(state = initialState, action: {type: string, pay
 				...state,
 			};
 		case Card.UPDATE_CARD:
-			return {
-				...state,
-			};
-		case DragDrop.DRAG_HAPPENED:
-			const {droppableIdStart, droppableIdEnd, droppableIndexStart, droppableIndexEnd, draggableId} = action.payload;
-			if (droppableIdStart === droppableIdEnd) {
-				moveCard(droppableIdStart, String(1646474913842), draggableId, droppableIndexStart, droppableIndexEnd, droppableIdEnd);
-			}
-
 			return {
 				...state,
 			};
